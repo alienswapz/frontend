@@ -5,6 +5,7 @@ import { DEFAULT_LIST_OF_LISTS, DEFAULT_TOKEN_LIST_URL } from '../../constants/l
 import { updateVersion } from '../global/actions'
 import { acceptListUpdate, addList, fetchTokenList, removeList, selectList } from './actions'
 import UNISWAP_DEFAULT_LIST from '@uniswap/default-token-list'
+//import fetch from 'node-fetch';
 
 export interface ListsState {
   readonly byUrl: {
@@ -29,6 +30,20 @@ const NEW_LIST_STATE: ListsState['byUrl'][string] = {
 
 type Mutable<T> = { -readonly [P in keyof T]: T[P] extends ReadonlyArray<infer U> ? U[] : T[P] }
 
+/*
+// const rawdata = require('https://raw.githubusercontent.com/alienswapz/assets/master/blockchains/supernova/tokenlist.json');
+
+const url = 'https://www.reddit.com/r/popular.json'
+const settings = { method: 'Get' }
+let data: TokenList = ''
+
+fetch(url, settings)
+  .then((res: { json: () => any }) => res.json())
+  .then((json: string) => {
+    // do something with JSON
+    data = new TokenList()
+  })
+ */
 const initialState: ListsState = {
   lastInitializedDefaultListOfLists: DEFAULT_LIST_OF_LISTS,
   byUrl: {
@@ -43,7 +58,7 @@ const initialState: ListsState = {
       pendingUpdate: null
     }
   },
-  selectedListUrl: undefined
+  selectedListUrl: DEFAULT_TOKEN_LIST_URL
 }
 
 export default createReducer(initialState, builder =>
