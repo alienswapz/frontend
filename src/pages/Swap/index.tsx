@@ -201,14 +201,10 @@ export default function Swap() {
     if (!swapCallback) {
       return
     }
-    console.log('swap error 2')
     setSwapState({ attemptingTxn: true, tradeToConfirm, showConfirm, swapErrorMessage: undefined, txHash: undefined })
-    console.log('swap here 1??')
     swapCallback()
       .then(hash => {
-        console.log('swap here 2??')
         setSwapState({ attemptingTxn: false, tradeToConfirm, showConfirm, swapErrorMessage: undefined, txHash: hash })
-        console.log('swap here 3??')
 
         ReactGA.event({
           category: 'Swap',
@@ -226,7 +222,6 @@ export default function Swap() {
         })
       })
       .catch(error => {
-        console.log('swap error 1')
         setSwapState({
           attemptingTxn: false,
           tradeToConfirm,

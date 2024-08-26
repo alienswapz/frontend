@@ -11,18 +11,20 @@ import AccountDetails from '../AccountDetails'
 import PendingView from './PendingView'
 import Option from './Option'
 import { SUPPORTED_WALLETS } from '../../constants'
-import { ExternalLink } from '../../theme'
+import { Button, ExternalLink } from '../../theme'
 import MetamaskIcon from '../../assets/images/metamask.png'
 import { ReactComponent as Close } from '../../assets/images/x.svg'
 import { injected, fortmatic, portis } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { AbstractConnector } from '@web3-react/abstract-connector'
+import { switchToSupernovaNetwork } from '../../index'
 
 const CloseIcon = styled.div`
   position: absolute;
   right: 1rem;
   top: 14px;
+
   &:hover {
     cursor: pointer;
     opacity: 0.6;
@@ -297,7 +299,11 @@ export default function WalletModal({
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
             {error instanceof UnsupportedChainIdError ? (
-              <h5>Please connect to the Supernova network.</h5>
+              <div>
+                <h5>Please connect to the Supernova network.</h5>
+                <br></br>
+                <Button onClick={switchToSupernovaNetwork}>Switch to Supernova</Button>
+              </div>
             ) : (
               'Error connecting. Try refreshing the page.'
             )}

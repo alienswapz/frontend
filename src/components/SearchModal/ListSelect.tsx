@@ -117,7 +117,6 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
       action: 'Select List',
       label: listUrl
     })
-    console.log(`selectThisList: ${listUrl}`)
     dispatch(selectList(listUrl))
     onBack()
   }, [dispatch, isSelected, listUrl, onBack])

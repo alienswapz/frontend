@@ -145,8 +145,8 @@ export function useSwapCallback(
             } = call
             const options = !value || isZero(value) ? {} : { value }
 
-            console.log(`useSwapCallback methodName: ${methodName}`)
-            console.log(`useSwapCallback: ${args}`)
+            console.debug(`useSwapCallback methodName: ${methodName}`)
+            console.debug(`useSwapCallback: ${args}`)
 
             return contract.estimateGas[methodName](...args, options)
               .then(gasEstimate => {
@@ -156,7 +156,6 @@ export function useSwapCallback(
                 }
               })
               .catch(gasError => {
-                console.log(gasError)
                 console.debug('Gas estimate failed, trying eth_call to extract error', call)
                 return contract.callStatic[methodName](...args, options)
                   .then(result => {
@@ -175,7 +174,6 @@ export function useSwapCallback(
                       default:
                         errorMessage = `The transaction cannot succeed due to error: ${callError.reason}. This is probably an issue with one of the tokens you are swapping.`
                     }
-                    console.log('some fucking error')
                     return { call, error: new Error(errorMessage) }
                   })
               })
@@ -213,7 +211,6 @@ export function useSwapCallback(
             const outputAmount = trade.outputAmount.toSignificant(3)
 
             const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
-              console.log(`${base}`)
             const withRecipient =
               recipient === account
                 ? base

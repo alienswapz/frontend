@@ -9,12 +9,19 @@ const MobilePopupWrapper = styled.div<{ height: string | number }>`
   max-width: 100%;
   height: ${({ height }) => height};
   margin: ${({ height }) => (height ? '0 auto;' : 0)};
-  margin-bottom: ${({ height }) => (height ? '20px' : 0)}};
+  margin-bottom: ${({ height }) => (height ? '20px' : 0)}
+}
 
-  display: none;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
+;
+
+display: none
+
+;
+${({ theme }) => theme.mediaWidth.upToSmall`
     display: block;
-  `};
+  `}
+
+;
 `
 
 const MobilePopupInner = styled.div`
@@ -24,6 +31,7 @@ const MobilePopupInner = styled.div`
   display: flex;
   flex-direction: row;
   -webkit-overflow-scrolling: touch;
+
   ::-webkit-scrollbar {
     display: none;
   }

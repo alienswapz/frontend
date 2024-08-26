@@ -12,6 +12,7 @@ const PendingSection = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+
   & > * {
     width: 100%;
   }
