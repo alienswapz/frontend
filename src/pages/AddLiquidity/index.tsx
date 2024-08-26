@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { TransactionResponse } from '@ethersproject/providers'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@uniswap/sdk'
+import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@alien_swap/sdk'
 import React, { useCallback, useContext, useState } from 'react'
 import { Plus } from 'react-feather'
 import ReactGA from 'react-ga'
@@ -124,6 +124,7 @@ export default function AddLiquidity({
   async function onAdd() {
     if (!chainId || !library || !account) return
     const router = getRouterContract(chainId, library, account)
+    console.log(router)
 
     const { [Field.CURRENCY_A]: parsedAmountA, [Field.CURRENCY_B]: parsedAmountB } = parsedAmounts
     if (!parsedAmountA || !parsedAmountB || !currencyA || !currencyB) {
@@ -168,7 +169,12 @@ export default function AddLiquidity({
         deadlineFromNow
       ]
       value = null
+      console.log('Estimate for addLiquidity')
+      console.log(`args: ${args}`)
+      console.log(`value: ${value}`)
     }
+
+    console.log('here1')
 
     setAttemptingTxn(true)
     await estimate(...args, value ? { value } : {})
@@ -178,6 +184,8 @@ export default function AddLiquidity({
           gasLimit: calculateGasMargin(estimatedGasLimit)
         }).then(response => {
           setAttemptingTxn(false)
+
+          console.log('here2')
 
           addTransaction(response, {
             summary:

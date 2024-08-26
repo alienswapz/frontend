@@ -1,12 +1,12 @@
-import { Contract } from '@ethersproject/contracts'
-import { getAddress } from '@ethersproject/address'
-import { AddressZero } from '@ethersproject/constants'
-import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
-import { BigNumber } from '@ethersproject/bignumber'
-import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ROUTER_ADDRESS } from '../constants'
-import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@uniswap/sdk'
-import { TokenAddressMap } from '../state/lists/hooks'
+import {Contract} from '@ethersproject/contracts'
+import {getAddress} from '@ethersproject/address'
+import {AddressZero} from '@ethersproject/constants'
+import {JsonRpcSigner, Web3Provider} from '@ethersproject/providers'
+import {BigNumber} from '@ethersproject/bignumber'
+import {abi as IUniswapV2Router02ABI} from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
+import {ROUTER_ADDRESS} from '../constants'
+import {ChainId, Currency, CurrencyAmount, ETHER, JSBI, Percent, Token} from '@alien_swap/sdk'
+import {TokenAddressMap} from '../state/lists/hooks'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -22,11 +22,15 @@ const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   3: 'ropsten.',
   4: 'rinkeby.',
   5: 'goerli.',
-  42: 'kovan.'
+  42: 'kovan.',
+  73405: 'novascan.'
 }
 
 export function getEtherscanLink(chainId: ChainId, data: string, type: 'transaction' | 'token' | 'address'): string {
-  const prefix = `https://${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[1]}etherscan.io`
+  let prefix = `https://${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[1]}etherscan.io`
+  if (chainId === ChainId.SUPERNOVA) {
+    prefix = `https://novascan.io`
+  }
 
   switch (type) {
     case 'transaction': {
@@ -53,6 +57,7 @@ export function shortenAddress(address: string, chars = 4): string {
 
 // add 10%
 export function calculateGasMargin(value: BigNumber): BigNumber {
+  console.log(`calculateGasMargin: ${value}`)
   return value.mul(BigNumber.from(10000).add(BigNumber.from(1000))).div(BigNumber.from(10000))
 }
 

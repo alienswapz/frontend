@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import { Contract } from '@ethersproject/contracts'
-import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@uniswap/sdk'
+import { JSBI, Percent, Router, SwapParameters, Trade, TradeType } from '@alien_swap/sdk'
 import { useMemo } from 'react'
 import { BIPS_BASE, DEFAULT_DEADLINE_FROM_NOW, INITIAL_ALLOWED_SLIPPAGE } from '../constants'
 import { getTradeVersion, useV1TradeExchangeAddress } from '../data/V1'
@@ -67,7 +67,6 @@ function useSwapCallArguments(
     }
 
     const swapMethods = []
-
     switch (tradeVersion) {
       case Version.v2:
         swapMethods.push(
@@ -146,6 +145,9 @@ export function useSwapCallback(
             } = call
             const options = !value || isZero(value) ? {} : { value }
 
+            console.log(`useSwapCallback methodName: ${methodName}`)
+            console.log(`useSwapCallback: ${args}`)
+
             return contract.estimateGas[methodName](...args, options)
               .then(gasEstimate => {
                 return {
@@ -154,8 +156,8 @@ export function useSwapCallback(
                 }
               })
               .catch(gasError => {
+                console.log(gasError)
                 console.debug('Gas estimate failed, trying eth_call to extract error', call)
-
                 return contract.callStatic[methodName](...args, options)
                   .then(result => {
                     console.debug('Unexpected successful call after failed estimate gas', call, gasError, result)
@@ -173,6 +175,7 @@ export function useSwapCallback(
                       default:
                         errorMessage = `The transaction cannot succeed due to error: ${callError.reason}. This is probably an issue with one of the tokens you are swapping.`
                     }
+                    console.log('some fucking error')
                     return { call, error: new Error(errorMessage) }
                   })
               })
@@ -210,6 +213,7 @@ export function useSwapCallback(
             const outputAmount = trade.outputAmount.toSignificant(3)
 
             const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
+              console.log(`${base}`)
             const withRecipient =
               recipient === account
                 ? base

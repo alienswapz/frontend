@@ -1,5 +1,5 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { ChainId } from '@uniswap/sdk'
+import { ChainId } from '@alien_swap/sdk'
 import { TokenList } from '@uniswap/token-lists'
 import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
@@ -32,6 +32,7 @@ export function useFetchListCallback(): (listUrl: string) => Promise<TokenList> 
 
   return useCallback(
     async (listUrl: string) => {
+        console.log(`useFetchListCallback: ${listUrl}`)
       const requestId = nanoid()
       dispatch(fetchTokenList.pending({ requestId, url: listUrl }))
       return getTokenList(listUrl, ensResolver)

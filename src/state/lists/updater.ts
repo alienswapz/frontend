@@ -8,6 +8,7 @@ import useIsWindowVisible from '../../hooks/useIsWindowVisible'
 import { addPopup } from '../application/actions'
 import { AppDispatch, AppState } from '../index'
 import { acceptListUpdate } from './actions'
+import { DEFAULT_TOKEN_LIST_URL } from '../../constants/lists'
 
 export default function Updater(): null {
   const { library } = useActiveWeb3React()
@@ -21,7 +22,9 @@ export default function Updater(): null {
   const fetchAllListsCallback = useCallback(() => {
     if (!isWindowVisible) return
     Object.keys(lists).forEach(url =>
-      fetchList(url).catch(error => console.debug('interval list fetching error', error))
+      url === '0'
+        ? fetchList(DEFAULT_TOKEN_LIST_URL).catch(error => console.debug('interval list fetching error', error))
+        : fetchList(url).catch(error => console.debug('interval list fetching error', error))
     )
   }, [fetchList, isWindowVisible, lists])
 
@@ -32,7 +35,6 @@ export default function Updater(): null {
   useEffect(() => {
     Object.keys(lists).forEach(listUrl => {
       const list = lists[listUrl]
-
       if (!list.current && !list.loadingRequestId && !list.error) {
         fetchList(listUrl).catch(error => console.debug('list added fetching error', error))
       }

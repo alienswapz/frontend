@@ -42,7 +42,9 @@ export default async function getTokenList(
     const isLast = i === urls.length - 1
     let response
     try {
+      console.log(`fetching: ${url}`)
       response = await fetch(url)
+      console.log(response)
     } catch (error) {
       console.debug('Failed to fetch list', listUrl, error)
       if (isLast) throw new Error(`Failed to download list ${listUrl}`)
@@ -55,6 +57,7 @@ export default async function getTokenList(
     }
 
     const json = await response.json()
+    console.log(json)
     if (!tokenListValidator(json)) {
       const validationErrors: string =
         tokenListValidator.errors?.reduce<string>((memo, error) => {

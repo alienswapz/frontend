@@ -117,7 +117,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
       action: 'Select List',
       label: listUrl
     })
-
+    console.log(`selectThisList: ${listUrl}`)
     dispatch(selectList(listUrl))
     onBack()
   }, [dispatch, isSelected, listUrl, onBack])
@@ -138,14 +138,7 @@ const ListRow = memo(function ListRow({ listUrl, onBack }: { listUrl: string; on
       action: 'Start Remove List',
       label: listUrl
     })
-    if (window.prompt(`Please confirm you would like to remove this list by typing REMOVE`) === `REMOVE`) {
-      ReactGA.event({
-        category: 'Lists',
-        action: 'Confirm Remove List',
-        label: listUrl
-      })
-      dispatch(removeList(listUrl))
-    }
+    dispatch(removeList(listUrl))
   }, [dispatch, listUrl])
 
   if (!list) return null
