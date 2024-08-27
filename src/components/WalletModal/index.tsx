@@ -18,7 +18,7 @@ import { injected, fortmatic, portis } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { AbstractConnector } from '@web3-react/abstract-connector'
-import { switchToSupernovaNetwork } from '../../index'
+import { switchToSupernovaNetwork } from '../../utils/supernova'
 
 const CloseIcon = styled.div`
   position: absolute;

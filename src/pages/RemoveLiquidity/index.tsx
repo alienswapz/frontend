@@ -99,6 +99,7 @@ export default function RemoveLiquidity({
   // allowance handling
   const [signatureData, setSignatureData] = useState<{ v: number; r: string; s: string; deadline: number } | null>(null)
   const [approval, approveCallback] = useApproveCallback(parsedAmounts[Field.LIQUIDITY], ROUTER_ADDRESS)
+
   async function onAttemptToApprove() {
     if (!pairContract || !pair || !library) throw new Error('missing dependencies')
     const liquidityAmount = parsedAmounts[Field.LIQUIDITY]
@@ -184,6 +185,7 @@ export default function RemoveLiquidity({
 
   // tx sending
   const addTransaction = useTransactionAdder()
+
   async function onRemove() {
     if (!chainId || !library || !account) throw new Error('missing dependencies')
     const { [Field.CURRENCY_A]: currencyAmountA, [Field.CURRENCY_B]: currencyAmountB } = parsedAmounts
@@ -561,7 +563,7 @@ export default function RemoveLiquidity({
                               currencyB === ETHER ? WETH[chainId].address : currencyIdB
                             }`}
                           >
-                            Receive WETH
+                            Receive WXZNN
                           </StyledInternalLink>
                         ) : oneCurrencyIsWETH ? (
                           <StyledInternalLink
@@ -569,7 +571,7 @@ export default function RemoveLiquidity({
                               currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'ETH' : currencyIdA
                             }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'ETH' : currencyIdB}`}
                           >
-                            Receive ETH
+                            Receive xZNN
                           </StyledInternalLink>
                         ) : null}
                       </RowBetween>

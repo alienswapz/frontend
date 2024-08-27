@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alien_swap/sdk@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.npmjs.org/@alien_swap/sdk/-/sdk-3.0.2.tgz#2325bd4b8972863da2086f8c0377aeb72a02e65b"
-  integrity sha512-J9lJWGYbBc6gjPU/TMrQg2wqvLnBbtBtWV2KdXiYxgE7pY4z/OwAffDJqxIA7xVHb+XLdyM+c5+8CqlLUfpOxA==
+"@alien_swap/sdk@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.npmjs.org/@alien_swap/sdk/-/sdk-3.0.3.tgz#0637501097134208ea680b6881517f51d48bc662"
+  integrity sha512-qRpkuxEl4MYCXMY39lcPfk8uiJ+OfbZB05+St/35dWWAg6vrAw6+cDRCBBEh9PVTsYZ7qGMnlsBz+OirjVTuTg==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"

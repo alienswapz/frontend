@@ -63,7 +63,8 @@ class MiniRpcProvider implements AsyncSendable {
         body: JSON.stringify(batch.map(item => item.request))
       })
     } catch (error) {
-      batch.forEach(({ reject }) => reject(new Error('Failed to send batch call')))
+      //batch.forEach(({ reject }) => reject(new Error('Failed to send batch call')))
+      batch.forEach(({ reject }) => console.error(`Failed to send batch call: ${reject}`))
       return
     }
 

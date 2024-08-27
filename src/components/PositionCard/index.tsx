@@ -27,6 +27,7 @@ export const FixedHeightRow = styled(RowBetween)`
 
 export const HoverCard = styled(Card)`
   border: 1px solid ${({ theme }) => theme.bg2};
+
   :hover {
     border: 1px solid ${({ theme }) => darken(0.06, theme.bg2)};
   }
@@ -224,7 +225,7 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             </FixedHeightRow>
 
             <AutoRow justify="center" marginTop={'10px'}>
-              <ExternalLink href={`https://uniswap.info/pair/${pair.liquidityToken.address}`}>
+              <ExternalLink href={`https://novascan.io/address/${pair.liquidityToken.address}`}>
                 View pool information ↗
               </ExternalLink>
             </AutoRow>

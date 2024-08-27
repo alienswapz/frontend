@@ -1,6 +1,6 @@
 {
-  "name": "@uniswap/interface",
-  "description": "Uniswap Interface",
+  "name": "@alien_swap/interface",
+  "description": "Alienswap",
   "homepage": ".",
   "private": true,
   "devDependencies": {
@@ -26,7 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "@uniswap/default-token-list": "^1.3.1",
-    "@alien_swap/sdk": "^3.0.2",
+    "@alien_swap/sdk": "^3.0.3",
     "@uniswap/token-lists": "^1.0.0-beta.15",
     "@uniswap/v2-core": "1.0.0",
     "@uniswap/v2-periphery": "^1.1.0-beta.0",

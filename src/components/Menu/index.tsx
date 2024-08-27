@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Info, BookOpen, Code, PieChart, MessageCircle } from 'react-feather'
+import { BookOpen, Code, MessageCircle } from 'react-feather'
 import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -68,17 +68,19 @@ const MenuItem = styled(ExternalLink)`
   flex: 1;
   padding: 0.5rem 0.5rem;
   color: ${({ theme }) => theme.text2};
+
   :hover {
     color: ${({ theme }) => theme.text1};
     cursor: pointer;
     text-decoration: none;
   }
+
   > svg {
     margin-right: 8px;
   }
 `
 
-const CODE_LINK = 'https://github.com/Uniswap/uniswap-interface'
+const CODE_LINK = 'https://github.com/alienswapz/frontend'
 
 export default function Menu() {
   const node = useRef<HTMLDivElement>()
@@ -94,11 +96,7 @@ export default function Menu() {
       </StyledMenuButton>
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https://uniswap.org/">
-            <Info size={14} />
-            About
-          </MenuItem>
-          <MenuItem id="link" href="https://uniswap.org/docs/v2">
+          <MenuItem id="link" href="https:/docs.alienswap.fun">
             <BookOpen size={14} />
             Docs
           </MenuItem>
@@ -106,13 +104,13 @@ export default function Menu() {
             <Code size={14} />
             Code
           </MenuItem>
-          <MenuItem id="link" href="https://discord.gg/EwFs3Pp">
+          <MenuItem id="link" href="https://t.me/zenonnetwork">
+            <MessageCircle size={14} />
+            Telegram
+          </MenuItem>
+          <MenuItem id="link" href="https://discord.gg/zenonnetwork">
             <MessageCircle size={14} />
             Discord
-          </MenuItem>
-          <MenuItem id="link" href="https://uniswap.info/">
-            <PieChart size={14} />
-            Analytics
           </MenuItem>
         </MenuFlyout>
       )}
