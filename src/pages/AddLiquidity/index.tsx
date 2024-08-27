@@ -37,7 +37,6 @@ import { Dots, Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
-import Tooltip from '../../components/Tooltip'
 import QuestionHelper from '../../components/QuestionHelper'
 
 export default function AddLiquidity({
@@ -441,9 +440,6 @@ export default function AddLiquidity({
                 </ButtonError>
               </AutoColumn>
             )}
-            <Tooltip text={'test'} show>
-              test2
-            </Tooltip>
             <div>
               <QuestionHelper text="Migrate your liquidity tokens from Uniswap V1 to Uniswap V2." />
             </div>
