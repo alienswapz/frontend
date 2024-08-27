@@ -96,7 +96,7 @@ export default function Menu() {
       </StyledMenuButton>
       {open && (
         <MenuFlyout>
-          <MenuItem id="link" href="https:/docs.alienswap.fun">
+          <MenuItem id="link" href="https://docs.alienswap.fun">
             <BookOpen size={14} />
             Docs
           </MenuItem>
