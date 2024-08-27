@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { BookOpen, Code, MessageCircle } from 'react-feather'
+import { BookOpen, Code, Droplet, MessageCircle, Send } from 'react-feather'
 import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -100,12 +100,16 @@ export default function Menu() {
             <BookOpen size={14} />
             Docs
           </MenuItem>
+          <MenuItem id="link" href="https://faucet.alienswap.fun">
+            <Droplet size={14} />
+            Faucet
+          </MenuItem>
           <MenuItem id="link" href={CODE_LINK}>
             <Code size={14} />
             Code
           </MenuItem>
           <MenuItem id="link" href="https://t.me/zenonnetwork">
-            <MessageCircle size={14} />
+            <Send size={14} />
             Telegram
           </MenuItem>
           <MenuItem id="link" href="https://discord.gg/zenonnetwork">

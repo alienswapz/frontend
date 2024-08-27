@@ -11,6 +11,7 @@ import { RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import { SectionBreak } from './styleds'
 import SwapRoute from './SwapRoute'
+import InfoHelper from '../InfoHelper'
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
   const theme = useContext(ThemeContext)
@@ -58,6 +59,15 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           <TYPE.black fontSize={14} color={theme.text1}>
             {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
           </TYPE.black>
+        </RowBetween>
+
+        <RowBetween>
+          <RowFixed>
+            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+              Gas fee
+            </TYPE.black>
+            <InfoHelper text="Gas fees are denominated in xZNN" />
+          </RowFixed>
         </RowBetween>
       </AutoColumn>
     </>

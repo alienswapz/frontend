@@ -48,6 +48,7 @@ const LabelRow = styled.div`
   font-size: 0.75rem;
   line-height: 1rem;
   padding: 0.75rem 1rem 0 1rem;
+
   span:hover {
     cursor: pointer;
     color: ${({ theme }) => darken(0.2, theme.text2)};
@@ -86,7 +87,7 @@ const Container = styled.div<{ hideInput: boolean }>`
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
   ${({ active }) => (active ? '  margin: 0 0.25rem 0 0.75rem;' : '  margin: 0 0.25rem 0 0.25rem;')}
-  font-size:  ${({ active }) => (active ? '20px' : '16px')};
+  font-size: ${({ active }) => (active ? '20px' : '16px')};
 
 `
 
@@ -101,9 +102,11 @@ const StyledBalanceMax = styled.button`
   cursor: pointer;
   margin-right: 0.5rem;
   color: ${({ theme }) => theme.primaryText1};
+
   :hover {
     border: 1px solid ${({ theme }) => theme.primary1};
   }
+
   :focus {
     border: 1px solid ${({ theme }) => theme.primary1};
     outline: none;
