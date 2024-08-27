@@ -28,7 +28,7 @@ export async function switchToSupernovaNetwork() {
       params: [{ chainId: '0x11ebd' }]
     })
   } catch (error) {
-    if (error.code === 4902) {
+    if (error.code === 4902 || error.code === -32603) {
       await addSupernovaNetwork()
     }
     console.log(error)
